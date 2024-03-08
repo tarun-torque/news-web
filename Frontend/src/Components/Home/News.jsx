@@ -14,6 +14,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import  { useEffect } from 'react'
+import axios from 'axios'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,6 +34,72 @@ export default function News() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const options = {
+        method: 'GET',
+        url: 'https://news67.p.rapidapi.com/v2/topic-search',
+        params: {
+          languages: 'english',
+          search: 'india'
+        },
+        headers: {
+          'X-RapidAPI-Key': 'f0e78877e1msh1f334bf07a596cdp18c6f9jsnc19f7d681eae',
+          'X-RapidAPI-Host': 'news67.p.rapidapi.com'
+        }
+      };
+
+      try {
+        const response = await axios.request(options);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <Card sx={{ maxWidth: 345 }}>

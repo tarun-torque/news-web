@@ -26,7 +26,13 @@ const userRegister = new Schema({
     confirmPassword: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin', 'subadmin'],
+        default: 'user'
     }
+
 });
 
 const User = mongoose.model('User', userRegister);

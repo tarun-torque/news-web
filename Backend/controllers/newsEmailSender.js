@@ -48,3 +48,6 @@ const sendBulkEmails = async () => {
 module.exports = {
   sendBulkEmails,
 };
+
+
+
