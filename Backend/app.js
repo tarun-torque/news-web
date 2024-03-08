@@ -4,6 +4,7 @@ const express = require('express');
 const connectDB = require('./utilities/connectDB');
 const userController = require('./routes/userRegistration');
 const email = require('./routes/newsRouter')
+const alluser = require('./routes/alluserRoute')
 const cors = require('cors');
 
 const app = express();
@@ -18,6 +19,7 @@ connectDB()
     // Use user controller
     app.use('/', userController);
     app.use('/email',email)
+    app.use('/all', alluser)
 
     // Start server
     const PORT = process.env.PORT || 4000;
