@@ -27,7 +27,7 @@ export default function ImgMediaCard(props) {
       </CardContent>
       <CardActions>
         
-        <Button size="small" variant="contained" href={url}>Read More</Button>
+        <Button size="small" variant="contained" href={url} target='_blank'>Read More</Button>
       </CardActions>
     </Card>
   );
