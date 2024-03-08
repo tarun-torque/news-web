@@ -1,22 +1,19 @@
-// Import mongoose
+// utilities/connectDB.js
+
 const mongoose = require('mongoose');
 
 // Define the MongoDB URI
 const mongoURI = 'mongodb+srv://torque061:nOstFbGBRCn5JvVx@cluster0.vqksyrr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+const connectToDB = async () => {
+    try {
+        await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+        console.log('Connected to database');
+    } catch (error) {
+        console.error(error);
+        throw error; // Rethrow the error to handle it in the calling module
+    }
+};
 
-// Get the default connection
-const db = mongoose.connection;
-
-// Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-// Bind connection to open event (to get notification of successful connection)
-db.once('open', () => {
-    console.log('Connected to MongoDB');
-});
-
-// Export the database connection
-module.exports = db;
+module.exports = connectToDB;
